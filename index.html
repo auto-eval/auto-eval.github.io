@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 20px;
         }
+        
+        .button-container {
+            text-align: center;
+            margin: 20px 0 40px 0;
+        }
+
         .button {
             padding: 15px 30px;
             font-size: 18px;
-            background-color: #4CAF50;
+            background-color: #2563eb;
             color: white;
             border: none;
             border-radius: 5px;
@@ -24,16 +28,97 @@
             text-decoration: none;
             transition: background-color 0.3s;
         }
+
         .button:hover {
-            background-color: #45a049;
+            background-color: #1e40af;
+        }
+
+        .instructions-box {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 800px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructions-box h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .instructions-box ol {
+            padding-left: 20px;
+        }
+
+        .instructions-box li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .instructions-box a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .instructions-box a:hover {
+            text-decoration: underline;
+        }
+        .code-block {
+            background-color: #f8f8f8;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border-left: 4px solid #2563eb;
+        }
+        .code-block code {
+            display: block;
+            background-color: #fff;
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .code-block p {
+            margin: 8px 0;
         }
     </style>
 </head>
 
 <body>
-    <a href="http://159.223.171.199:2359/page" class="button">AutoEval DashBoard</a>
-    <!-- <script>
-        window.location.href = "http://159.223.171.199:1783/page";
-    </script> -->
+    <div class="button-container">
+        <a href="http://159.223.171.199:2359/page" class="button">AutoEval DashBoard</a>
+    </div>
+
+    <div class="instructions-box">
+        <h2>Instructions</h2>
+        <ol>
+            <li>Set up a policy server that can output actions once queried with an observation and language command.
+                Follow this <a href="https://gist.github.com/auto-eval/b7c3d7550786a8a9e858c3732bbc776a"
+                    target="_blank">template</a> and fill out the two TODOs to create your own policy server. Basically
+                    you need to implement the model loading logic & model.call() logic. This should take you 5-10 minutes.</li> 
+            <li>Keep your policy server up and running (e.g. in a tmux) with <code>python policy_server.py</code>. This will set up your policy server on your
+                localhost.</li>
+            <li>Make sure your policy server's IP & Port are publically accessible. After Step 2, you can expose your
+                localhost to a public server with <a href="https://ngrok.com" target="_blank">ngrok</a> or <a
+                    href="https://github.com/ekzhang/bore" target="_blank">bore</a>. Both can be installed in ~1 min;
+                ngrok has limited calls for free users, while bore is open-source and free.
+                <div class="code-block">
+                    <p>With ngrok:</p>
+                    <code>ngrok http 8000</code>
+                    <p>With bore.pub:</p>
+                    <code>bore local 8000 --to bore.pub</code>
+                    <p>Note: If you aren't able to resolve bore.pub's DNS (test this with `ping bore.pub`), you can use their actual IP: </p>
+                    <code>bore local 8000 --to 159.223.171.199</code>
+                </div>
+            </li>
+            <li>Go to the AutoEval Dashboard at the top of the page, and enter your publically accessible IP & port of the policy server,
+                and choose your eval task and other options. Submit your job!</li>
+            <li>Monitor your job progress in the dashboard, and can view it executing real time in the "Web Viewer".</li>
+            <li>Once the eval is finished, you will get an email notification (feature pending), and you can access the
+                evaluation report through the wandb link on the dashboard.</li>
+        </ol>
+    </div>
 </body>
+
 </html>
