@@ -138,8 +138,8 @@
                 localhost.</li>
             <li>Make sure your policy server's IP & Port are publically accessible. After Step 2, you can expose your
                 localhost to a public server with <a href="https://ngrok.com" target="_blank">ngrok</a> or <a
-                    href="https://github.com/ekzhang/bore" target="_blank">bore</a>. Both can be installed in ~1 min;
-                ngrok has limited calls for free users, while bore is open-source and free.
+                    href="https://github.com/ekzhang/bore" target="_blank">bore</a>. Both can be installed in ~1 min (See quick start for bore here);
+                ngrok has limited calls for free users, while bore is open-source and free (<a href="https://gist.github.com/auto-eval/f3194b68dca344d337ce2f9ea3edc50f" target="_blank">quick start guide</a>).
                 <div class="code-block">
                     <p>With ngrok:</p>
                     <code>ngrok http 8000</code>
@@ -148,6 +148,7 @@
                     <p>Note: If you aren't able to resolve bore.pub's DNS (test this with `ping bore.pub`), you can use their actual IP: </p>
                     <code>bore local 8000 --to 159.223.171.199</code>
                 </div>
+                Either of these commands should also be presistently run (e.g. in a tmux).
             </li>
             <li>Go to the AutoEval Dashboard at the top of the page, and enter your publically accessible IP & port of the policy server,
                 and choose your eval task and other options. Submit your job!</li>
