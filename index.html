@@ -50,6 +50,19 @@
             font-size: 1.1em;
         }
 
+        .task-images-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .task-image {
+            max-width: 45%;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
         .teaser-container {
             width: 100%;
             max-width: 800px;
@@ -121,16 +134,32 @@
     </div>
 
     <div class="overview-box">
+        <h2>Overview</h2>
         <p>AutoEval is an evluation service that evaluates generalist robot policies in the real world, currently with two widowx robots and four different tasks. Users can submit policies through an online dashboard, and get back detailed evaluation report (success rates, videos, etc.) after the evaluation job is done.</p>
         <div class="teaser-container">
             <img src="assets/teaser.png" alt="AutoEval Teaser" class="teaser-image">
         </div>
     </div>
 
+    <div class="overview-box">
+        <h2>Tasks</h2>
+        <p>The currently publically available tasks are:</p>
+        <div class="task-images-container">
+            <img src="assets/drawer_scene.png" alt="Drawer Scene" class="task-image">
+            <img src="assets/sink_scene.png" alt="Sink Scene" class="task-image">
+        </div>
+        <ul style="list-style-position: inside; padding: 0; text-align: left; max-width: 600px; margin: 20px auto;">
+            <li>Close the drawer</li>
+            <li>Open the drawer</li>
+            <li>Put the eggplant in the yellow basket</li>
+            <li>Put the eggplant in the blue sink</li>
+        </ul>
+    </div>
+
     <div class="instructions-box">
         <h2>Instructions</h2>
         <ol>
-            <li>Set up a policy server that can output actions once queried with an observation and language command.
+            <li>Set up a policy server that can output actions once queried with an observation (256 x 256 RGB image) and language command.
                 Follow this <a href="https://gist.github.com/auto-eval/b7c3d7550786a8a9e858c3732bbc776a"
                     target="_blank">template</a> and fill out the two TODOs to create your own policy server. Basically
                     you need to implement the model loading logic & model.call() logic. This should take you 5-10 minutes.</li> 
