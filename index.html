@@ -183,6 +183,12 @@
                 </div>
                 Either of these commands should also be persistently run (e.g. in a tmux).
             </li>
+            <li>
+                [RECOMMENDED] to sanity check that your policy is reasonable before doing the full real-world evaluation, you can 
+                compute the action MSE between your policy output and ground truth actions against Bridge V2 trajectories. We provide a script for this 
+                "MSE sanity check" <a href="https://github.com/auto-eval/mse-check?tab=readme-ov-file#usage" target="_blank">here</a>.
+                You can run the sanity check by <code>python test_policy_client_mse.py --ip SERVER_IP --port SERVER_PORT</code>
+            </li>
             <li>Go to the AutoEval Dashboard at the top of the page, and enter your publically accessible IP & port of the policy server,
                 and choose your eval task and other options. Submit your job!</li>
             <li>Monitor your job progress in the dashboard, and can view it executing real time in the "Web Viewer".</li>
