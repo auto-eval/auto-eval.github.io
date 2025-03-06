@@ -162,7 +162,11 @@
             <li>Set up a policy server that can output actions once queried with an observation (256 x 256 RGB image) and language command.
                 Follow this <a href="https://gist.github.com/auto-eval/b7c3d7550786a8a9e858c3732bbc776a"
                     target="_blank">template</a> and fill out the two TODOs to create your own policy server. Basically
-                    you need to implement the model loading logic & model.call() logic. This should take you 5-10 minutes.</li> 
+                you need to implement the model loading logic & model.call() logic. This should take you 5-10 minutes.
+                <ul style="list-style-position: inside; padding: 0; text-align: left; margin: 0;">
+                    <li>If you would like to quickly try out AutoEval, you can use our pre-made <a href="https://gist.github.com/auto-eval/fa4ea2ffe0993f3b538937f3434a6be2" target="_blank">policy server for OpenVLA</a> to submit a job right away.</li>
+                </ul>
+            </li> 
             <li>Keep your policy server up and running (e.g. in a tmux) with <code>python policy_server.py</code>. This will set up your policy server on your
                 localhost.</li>
             <li>Make sure your policy server's IP & Port are publically accessible. After Step 2, you can expose your
@@ -174,16 +178,34 @@
                     <code>ngrok http 8000</code>
                     <p>With bore.pub:</p>
                     <code>bore local 8000 --to bore.pub</code>
-                    <p>Note: If you aren't able to resolve bore.pub's DNS (test this with <code>ping bore.pub</code>), you can use their actual IP: </p>
+                    <p>Note: If you aren't able to resolve bore.pub's DNS (e.g. if <code>ping bore.pub</code> fails), you can use their actual IP: </p>
                     <code>bore local 8000 --to 159.223.171.199</code>
                 </div>
-                Either of these commands should also be presistently run (e.g. in a tmux).
+                Either of these commands should also be persistently run (e.g. in a tmux).
             </li>
             <li>Go to the AutoEval Dashboard at the top of the page, and enter your publically accessible IP & port of the policy server,
                 and choose your eval task and other options. Submit your job!</li>
             <li>Monitor your job progress in the dashboard, and can view it executing real time in the "Web Viewer".</li>
             <li>Once the eval is finished, you will get an email notification (feature pending), and you can access the
-                evaluation report through the wandb link on the dashboard.</li>
+                evaluation report through the wandb link on the dashboard. The evaluation report (example <a href="https://wandb.ai/rail-iterated-offline-rl/auto_eval_beta_launch/runs/test%20good%20_open_web_client_open_the_drawer_20250305_005411?nw=nwuserzhouzypaul" target="_blank">here</a>) includes success rates, videos, and other detailed metrics on the evaluation job,
+                for both the evaluation task and the reset task (as indexed by the language).
+                Some of the important metrics include:
+                <ul style="list-style-position: inside; padding: 0; text-align: left; margin: 0;">
+                    <li>Success rate statistics:</li>
+                        <ul style="list-style-position: inside; padding: 0 0 0 40px; text-align: left; margin: 0;">
+                            <li><span style="font-family: 'Courier New', Courier, monospace">overall_success_rate:</span> average success rate over the entire evaluation job</li>
+                            <li><span style="font-family: 'Courier New', Courier, monospace">recent_success_rate:</span> success rate over the most recent 20 episodes in the evaluation job.</li>
+                            <li><span style="font-family: 'Courier New', Courier, monospace">episode_success:</span> whether each episode succeeded (1) or failed (0).</li>
+                        </ul>
+                    <li>Visualization of evaluation:</li>
+                        <ul style="list-style-position: inside; padding: 0 0 0 40px; text-align: left; margin: 0;">
+                            <li><span style="font-family: 'Courier New', Courier, monospace">video:</span> low resolution video of the trajectory</li>
+                            <li><span style="font-family: 'Courier New', Courier, monospace">frames:</span> a film strip of the episode instead of a full video</li>
+                            <li><span style="font-family: 'Courier New', Courier, monospace">initial_and_final_frames:</span> periodic snapshots of the initial and final frames of an episode, visualized alongside success signal.</li>
+                        </ul>
+                    <li>Other metrics</li>
+                </ul>
+            </li>
         </ol>
     </div>
 </body>
