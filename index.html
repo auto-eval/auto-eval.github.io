@@ -192,27 +192,46 @@
             <li>Go to the AutoEval Dashboard at the top of the page, and enter your publically accessible IP & port of the policy server,
                 and choose your eval task and other options. Submit your job!</li>
             <li>Monitor your job progress in the dashboard, and can view it executing real time in the "Web Viewer".</li>
-            <li>Once the eval is finished, you will get an email notification (feature pending), and you can access the
-                evaluation report through the wandb link on the dashboard. The evaluation report (example <a href="https://wandb.ai/rail-iterated-offline-rl/auto_eval_beta_launch/runs/test%20good%20_open_web_client_open_the_drawer_20250305_005411?nw=nwuserzhouzypaul" target="_blank">here</a>) includes success rates, videos, and other detailed metrics on the evaluation job,
-                for both the evaluation task and the reset task (as indexed by the language).
-                Some of the important metrics include:
-                <ul style="list-style-position: inside; padding: 0; text-align: left; margin: 0;">
-                    <li>Success rate statistics:</li>
-                        <ul style="list-style-position: inside; padding: 0 0 0 40px; text-align: left; margin: 0;">
-                            <li><span style="font-family: 'Courier New', Courier, monospace">overall_success_rate:</span> average success rate over the entire evaluation job</li>
-                            <li><span style="font-family: 'Courier New', Courier, monospace">recent_success_rate:</span> success rate over the most recent 20 episodes in the evaluation job.</li>
-                            <li><span style="font-family: 'Courier New', Courier, monospace">episode_success:</span> whether each episode succeeded (1) or failed (0).</li>
-                        </ul>
-                    <li>Visualization of evaluation:</li>
-                        <ul style="list-style-position: inside; padding: 0 0 0 40px; text-align: left; margin: 0;">
-                            <li><span style="font-family: 'Courier New', Courier, monospace">video:</span> low resolution video of the trajectory</li>
-                            <li><span style="font-family: 'Courier New', Courier, monospace">frames:</span> a film strip of the episode instead of a full video</li>
-                            <li><span style="font-family: 'Courier New', Courier, monospace">initial_and_final_frames:</span> periodic snapshots of the initial and final frames of an episode, visualized alongside success signal.</li>
-                        </ul>
-                    <li>Other metrics</li>
-                </ul>
-            </li>
+            <li>Once the eval is finished, you can access the evaluation report through the wandb link on the dashboard. The evaluation report (example <a href="https://wandb.ai/rail-iterated-offline-rl/auto_eval_beta_launch/runs/test%20good%20_open_web_client_open_the_drawer_20250305_005411?nw=nwuserzhouzypaul" target="_blank">here</a>) includes success rates, videos, and other detailed metrics on the evaluation job.</li>
         </ol>
+    </div>
+
+    <div class="instructions-box">
+        <h2>Evaluation Report</h2>
+        <p>The evaluation report includes various metrics and visualizations to help you understand your policy's performance. It is hosted on wandb indexed by the evaluation task language command and reset task language command. Some important metrics include:</p>
+        <ul style="list-style-position: inside; padding: 0; text-align: left; margin: 0;">
+            <li>Success rate statistics:</li>
+                <ul style="list-style-position: inside; padding: 0 0 0 40px; text-align: left; margin: 0;">
+                    <li><span style="font-family: 'Courier New', Courier, monospace">overall_success_rate:</span> average success rate over the entire evaluation job</li>
+                    <li><span style="font-family: 'Courier New', Courier, monospace">recent_success_rate:</span> success rate over the most recent 20 episodes in the evaluation job.</li>
+                    <li><span style="font-family: 'Courier New', Courier, monospace">episode_success:</span> whether each episode succeeded (1) or failed (0).</li>
+                </ul>
+            <li>Visualization of evaluation:</li>
+                <ul style="list-style-position: inside; padding: 0 0 0 40px; text-align: left; margin: 0;">
+                    <li><span style="font-family: 'Courier New', Courier, monospace">video:</span> low resolution video of the trajectory</li>
+                    <li><span style="font-family: 'Courier New', Courier, monospace">frames:</span> a film strip of the episode instead of a full video</li>
+                    <li><span style="font-family: 'Courier New', Courier, monospace">initial_and_final_frames:</span> periodic snapshots of the initial and final frames of an episode, visualized alongside success signal.</li>
+                </ul>
+            <li>Other metrics</li>
+        </ul>
+    </div>
+
+    <div class="instructions-box">
+        <h2>FAQ</h2>
+        <ol style="list-style-position: inside; padding: 0; text-align: left; margin: 0;">
+            <li><strong>Q: What should my policy expect as input?</strong><br>
+               A: It should take in a 256x256 RGB image, an 8-dimensional proprioceptive state of the robot (xyz, r_xyz, 0, gripper), where gripper is between 0 (fully closed) and 0.39 (fully open), and a language command in string.</li>
+            <br>
+            <li><strong>Q: What should my policy output be?</strong><br>
+               A: It should output a 7-dimensional end-effector delta action for the widowx robot.</li>
+            <br>
+            <li><strong>Q: Does AutoEval support evaluation policies with action chunking and observation history?</strong><br>
+               A: Yes, but the policy server would need to keep track of the states (e.g. history, action chunks). We provide an example of such a policy server <a href="https://gist.github.com/auto-eval/025d2dc1cf73ba3856e60fa60f9d4572" target="_blank">here</a>.</li>
+            <br>
+            <li><strong>Q: Will the Motors Overheat from continuous evals?</strong><br>
+               A: We put the robot to rest for 20 minutes every 6 hours. So if your job doesn't get queued when there is no jobs before it, it might be in the resting period.</li>
+        </ol>
+        <p style="margin-top: 20px;">If you encounter problems not described here, please contact the authors.</p>
     </div>
 </body>
 
