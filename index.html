@@ -401,14 +401,17 @@
                     </div>
                 </li>
                 <li>
-                    [RECOMMENDED] to sanity check that your policy is reasonable before doing the full real-world evaluation, you can 
-                    compute the action MSE between your policy output and ground truth actions against Bridge V2 trajectories. We provide a script for this 
-                    "MSE sanity check" <a href="https://github.com/zhouzypaul/mse-check?tab=readme-ov-file#usage" target="_blank">here</a>.
-                    You can run the sanity check by <code>python test_policy_client_mse.py --ip SERVER_IP --port SERVER_PORT</code>
+                    [RECOMMENDED] We provide two resources to help debug and sanity check your policy before doing the full real-world evaluation:
+                    <ul>
+                        <li>You can use our SIMPLER environments and make sure your policy outputs reasonable actions in simulated environments. Check out the instructions <a href="https://github.com/zhouzypaul/auto_eval?tab=readme-ov-file#eval-with-simpler-env" target="_blank">here</a>.</li>
+                        <li>You can compute the action MSE between your policy output and ground truth actions against Bridge V2 trajectories. We provide a script for this 
+                            "MSE sanity check" <a href="https://github.com/zhouzypaul/mse-check?tab=readme-ov-file#usage" target="_blank">here</a>.
+                            You can run the sanity check by <code>python test_policy_client_mse.py --ip SERVER_IP --port SERVER_PORT</code></li>
+                    </ul>
                 </li>
                 <li>Go to the AutoEval Dashboard at the top of the page, and enter your publically accessible IP & port of the policy server,
                     and choose your eval task and other options. Submit your job!</li>
-                <li>Monitor your job progress in the dashboard, and can view it executing real time in the "Web Viewer".</li>
+                <li>Monitor your job progress in the dashboard, and view it executing in real time under the live feed.</li>
                 <li>Once the eval is finished, you can access the evaluation report through the wandb link on the dashboard. The evaluation report (example <a href="https://wandb.ai/rail-iterated-offline-rl/auto_eval_beta_launch/runs/test%20good%20_open_web_client_open_the_drawer_20250305_005411?nw=nwuserzhouzypaul" target="_blank">here</a>) includes success rates, videos, and other detailed metrics on the evaluation job.</li>
             </ol>
         </div>
@@ -417,7 +420,17 @@
     <section class="section section-dark">
         <div class="section-content">
             <h2>Evaluation Report</h2>
-            <p>The evaluation report includes various metrics and visualizations to help you understand your policy's performance. It is hosted on wandb indexed by the evaluation task language command and reset task language command. Some important metrics include:</p>
+            <p>The evaluation report includes various metrics and visualizations to help you understand your policy's performance (see example <a href="https://wandb.ai/rail-iterated-offline-rl/auto_eval_beta_launch/runs/test%20good%20_open_web_client_open_the_drawer_20250305_005411?nw=nwuserzhouzypaul" target="_blank">here</a>). It is hosted publicly on weights and biases. Some important metrics include:</p>
+            <div class="report-image-container" style="text-align: center; margin: 20px 0;">
+                <img src="assets/report.png" alt="Evaluation Report Example" style="max-width: 40%; height: auto;" class="report-image">
+            </div>
+            <style>
+                @media (max-width: 768px) {
+                    .report-image {
+                        max-width: 100% !important;
+                    }
+                }
+            </style>
             <ul>
                 <li>Success rate statistics:</li>
                     <ul style="padding-left: 40px;">
@@ -458,7 +471,7 @@
             <li><strong>Q: Are the evaluation data logged and available?</strong><br>
                A: Yes. All evaluation data (e.g. observations, actions, success) are logged at full resolution and available on a <a href="https://huggingface.co/datasets/zhouzypaul/auto_eval" target="_blank">huggingface dataset</a>. You can find the directory to your job by going to <code>wandb eval report > logs > printed out at the bottom</code></li>
         </ol>
-        <p style="margin-top: 20px;">If you encounter problems not described here, please contact the authors.</p>
+        <p style="margin-top: 20px;">If you encounter problems not described here, please contact the authors or reach out on the Discord channel.</p>
     </div>
 </body>
 
