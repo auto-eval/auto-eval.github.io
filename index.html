@@ -315,7 +315,7 @@
             </span>
             <!-- Code Link. -->
             <span class="link-block">
-              <a href="https://github.com/zhouzypaul/auto-eval"
+              <a href="https://github.com/zhouzypaul/auto_eval"
                  class="button is-rounded is-dark">
                 <span class="icon">
                   <i class="fab fa-github"></i>
@@ -366,18 +366,18 @@
             <h2>Instructions</h2>
             <ol>
                 <li>Set up a policy server that can output actions once queried with an observation (256 x 256 RGB image) and language command.
-                    Follow this <a href="https://gist.github.com/auto-eval/b7c3d7550786a8a9e858c3732bbc776a"
+                    Follow this <a href="https://gist.github.com/zhouzypaul/8ba0123b2931a7295a00eaa09dd540cd"
                         target="_blank">template</a> and fill out the two TODOs to create your own policy server. Basically
                     you need to implement the model loading logic & model.call() logic. This should take you 5-10 minutes.
                     <ul>
-                        <li>If you would like to quickly try out AutoEval, you can use our pre-made <a href="https://gist.github.com/auto-eval/fa4ea2ffe0993f3b538937f3434a6be2" target="_blank">policy server for OpenVLA</a> to submit a job right away.</li>
+                        <li>If you would like to quickly try out AutoEval, you can use our pre-made <a href="https://gist.github.com/zhouzypaul/15975bd7a23e4d965ad32d634ff7c4be" target="_blank">policy server for OpenVLA</a> to submit a job right away.</li>
                     </ul>
                 </li> 
                 <li>Keep your policy server up and running (e.g. in a tmux) with <code>python policy_server.py</code>. This will set up your policy server on your
                     localhost.</li>
                 <li>Make sure your policy server's IP & Port are publically accessible. After Step 2, you can expose your
                     localhost to a public server with <a href="https://ngrok.com" target="_blank">ngrok</a> or <a
-                        href="https://github.com/ekzhang/bore" target="_blank">bore</a>. Both can be installed in ~1 min (See quick installation for bore <a href="https://gist.github.com/auto-eval/f3194b68dca344d337ce2f9ea3edc50f" target="_blank">here</a>);
+                        href="https://github.com/ekzhang/bore" target="_blank">bore</a>. Both can be installed in ~1 min (See quick installation for bore <a href="https://gist.github.com/zhouzypaul/03db9a37ea947bdacc01c637c84c7651" target="_blank">here</a>);
                     ngrok has limited calls for free users, while bore is open-source and completely free.
                     <div class="code-block">
                         <p>With ngrok:</p>
@@ -393,7 +393,7 @@
                 <li>
                     [RECOMMENDED] to sanity check that your policy is reasonable before doing the full real-world evaluation, you can 
                     compute the action MSE between your policy output and ground truth actions against Bridge V2 trajectories. We provide a script for this 
-                    "MSE sanity check" <a href="https://github.com/auto-eval/mse-check?tab=readme-ov-file#usage" target="_blank">here</a>.
+                    "MSE sanity check" <a href="https://github.com/zhouzypaul/mse-check?tab=readme-ov-file#usage" target="_blank">here</a>.
                     You can run the sanity check by <code>python test_policy_client_mse.py --ip SERVER_IP --port SERVER_PORT</code>
                 </li>
                 <li>Go to the AutoEval Dashboard at the top of the page, and enter your publically accessible IP & port of the policy server,
@@ -437,7 +437,7 @@
                    A: It should output a 7-dimensional end-effector delta action for the WidowX robot. We use blocking control to execute the policy action, and potential latency issues in the policy server should not affect performance.</li>
             <br>
             <li><strong>Q: Does AutoEval support evaluation policies with action chunking and observation history?</strong><br>
-               A: Yes, but the policy server would need to keep track of the states (e.g. history, action chunks). We provide an example of such a policy server <a href="https://gist.github.com/auto-eval/025d2dc1cf73ba3856e60fa60f9d4572" target="_blank">here</a>.</li>
+               A: Yes, but the policy server would need to keep track of the states (e.g. history, action chunks). We provide an example of such a policy server <a href="https://gist.github.com/zhouzypaul/f85382b77b75e372bb4f8b6c04d6cef1" target="_blank">here</a>.</li>
             <br>
             <li><strong>Q: Will the Motors Overheat from continuous evals?</strong><br>
                A: We put the robot to rest for 20 minutes every 6 hours. So if your job doesn't get queued when there is no jobs before it, it might be in the resting period.</li>
