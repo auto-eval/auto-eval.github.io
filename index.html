@@ -295,12 +295,12 @@
           <div class="publication-links">
             <!-- Dashboard Link. -->
             <span class="link-block">
-              <a href="http://159.223.171.199:3079/page"
+              <a href="http://159.223.171.199:46569/page"
                  class="button is-rounded is-primary">
                 <span class="icon">
                   <i class="fas fa-tachometer-alt"></i>
                 </span>
-                <span>Dashboard</span>
+                <span>Eval Live Stream & Queue</span>
               </a>
             </span>
             <!-- Paper Link. -->
@@ -346,7 +346,7 @@
             <p>AutoEval is a system that autonomously evaluates generalist robot policies in the real world 24/7, and the evaluation results correspond closely to the ground truth human-run evaluations.
                 AutoEval requires minimal human intervention by using robust success classifiers and reset policies fine-tuned from foundation models.
                 We currently open access to two AutoEval stations with WidowX robots and four different tasks. 
-                Users can submit policies through an <a href="http://159.223.171.199:3079/page" style="color: #2563eb">online dashboard</a>, and get back detailed evaluation report (success rates, videos, etc.) after the evaluation job is done.
+                Users can submit policies through an <a href="http://159.223.171.199:46569/page" style="color: #2563eb">online dashboard</a>, and get back detailed evaluation report (success rates, videos, etc.) after the evaluation job is done.
             <div class="teaser-container">
                 <img src="assets/teaser.png" alt="AutoEval Teaser" class="teaser-image">
             </div>
@@ -373,9 +373,9 @@
 
     <section class="section section-light">
         <div class="section-content">
-            <h2>Instructions</h2>
+            <h2>Instructions for Evaluating Your Policy in our AutoEval Cells</h2>
             <ol>
-                <li>Set up a policy server that can output actions once queried with an observation (256 x 256 RGB image) and language command.
+                <li>Set up a policy server that can output actions once queried with an observation (256 x 256 RGB image), proprio states, and language command.
                     Follow this <a href="https://gist.github.com/zhouzypaul/8ba0123b2931a7295a00eaa09dd540cd"
                         target="_blank">template</a> and fill out the two TODOs to create your own policy server. Basically
                     you need to implement the model loading logic & model.call() logic. This should take you 5-10 minutes.
@@ -414,6 +414,7 @@
                 <li>Monitor your job progress in the dashboard, and view it executing in real time under the live feed.</li>
                 <li>Once the eval is finished, you can access the evaluation report through the wandb link on the dashboard. The evaluation report (example <a href="https://wandb.ai/rail-iterated-offline-rl/auto_eval_beta_launch/runs/test%20good%20_open_web_client_open_the_drawer_20250305_005411?nw=nwuserzhouzypaul" target="_blank">here</a>) includes success rates, videos, and other detailed metrics on the evaluation job.</li>
             </ol>
+            <p>Please refer to the FAQ section at the bottom of the page if you run into any issues.</p>
         </div>
     </section>
 
@@ -471,7 +472,7 @@
             <li><strong>Q: Are the evaluation data logged and available?</strong><br>
                A: Yes. All evaluation data (e.g. observations, actions, success) are logged at full resolution and available on a <a href="https://huggingface.co/datasets/zhouzypaul/auto_eval" target="_blank">huggingface dataset</a>. You can find the directory to your job by going to <code>wandb eval report > logs > printed out at the bottom</code></li>
         </ol>
-        <p style="margin-top: 20px;">If you encounter problems not described here, please contact the authors or reach out on the Discord channel.</p>
+        <p style="margin-top: 20px;">If you encounter problems not described here, please contact the authors or reach out on the <a href="https://discord.gg/3CbJw48P" target="_blank">Discord channel</a>.</p>
     </div>
 </body>
 
