@@ -306,7 +306,7 @@
             </span>
             <!-- Paper Link. -->
             <span class="link-block">
-              <a href="https://auto-eval.github.io/assets/paper.pdf"
+              <a href="https://arxiv.org/abs/2503.24278"
                  class="button is-rounded is-dark">
                 <span class="icon">
                   <i class="fas fa-file-pdf"></i>
@@ -375,6 +375,10 @@
     <section class="section section-light">
         <div class="section-content">
             <h2>Instructions for Evaluating Your Policy in our AutoEval Cells</h2>
+            <p>
+                Your policy should take as input a 256x256 RGB image, an 8-dimensional proprioceptive state of the robot (xyz, r_xyz, 0, gripper), where gripper is between 0 (fully closed) and 0.39 (fully open), and a language command in string.
+                Your policy output should be a 7-dimensional end-effector delta action for the WidowX robot. We use blocking control to execute the policy action.
+            </p>
             <ol>
                 <li>Set up a policy server that can output actions once queried with an observation (256 x 256 RGB image), proprio states, and language command.
                     Follow this <a href="https://gist.github.com/zhouzypaul/8ba0123b2931a7295a00eaa09dd540cd"
@@ -455,26 +459,37 @@
         <div class="section-content">
             <h2>FAQ</h2>
             <ol>
-                <li><strong>Q: What should my policy expect as input?</strong><br>
-                   A: It should take in a 256x256 RGB image, an 8-dimensional proprioceptive state of the robot (xyz, r_xyz, 0, gripper), where gripper is between 0 (fully closed) and 0.39 (fully open), and a language command in string.</li>
+                <li><strong>Q: Does AutoEval support evaluation policies with action chunking and observation history?</strong><br>
+                A: Yes, but the policy server would need to keep track of the states (e.g. history, action chunks). We provide an example of such a policy server <a href="https://gist.github.com/zhouzypaul/f85382b77b75e372bb4f8b6c04d6cef1" target="_blank">here</a>.</li>
                 <br>
-                <li><strong>Q: What should my policy output be?</strong><br>
-                   A: It should output a 7-dimensional end-effector delta action for the WidowX robot. We use blocking control to execute the policy action, and potential latency issues in the policy server should not affect performance.</li>
-            <br>
-            <li><strong>Q: Does AutoEval support evaluation policies with action chunking and observation history?</strong><br>
-               A: Yes, but the policy server would need to keep track of the states (e.g. history, action chunks). We provide an example of such a policy server <a href="https://gist.github.com/zhouzypaul/f85382b77b75e372bb4f8b6c04d6cef1" target="_blank">here</a>.</li>
-            <br>
-            <li><strong>Q: Will the Motors Overheat from continuous evals?</strong><br>
-               A: We put the robot to rest for 20 minutes every 6 hours. So if your job doesn't get queued when there is no jobs before it, it might be in the resting period.</li>
-            <br>
-            <li><strong>Q: Can I evaluate goal-conditioned policies?</strong><br>
-               A: Yes. Even though the AutoEval server will query your policy with the language command, your policy server can ignore the language command and use the proper goal image. We provide the goal images of the four tasks in the github repo.</li>
-            <br>
-            <li><strong>Q: Are the evaluation data logged and available?</strong><br>
-               A: Yes. All evaluation data (e.g. observations, actions, success) are logged at full resolution and available on a <a href="https://huggingface.co/datasets/zhouzypaul/auto_eval" target="_blank">huggingface dataset</a>. You can find the directory to your job by going to <code>wandb eval report > logs > printed out at the bottom</code></li>
-        </ol>
+                <li><strong>Q: Why did I get the "Exception: Failed to connect to action server" error?</strong><br>
+                    A: This error occurs because the AutoEval server cannot connect to the robot action server (through agentlace). Sometimes re-submitting the job to the same robot will fix the issue. If two consecutive jobs fail, the robot is likely down; please contact the authors with your job ID.</li>
+                <br>
+                <li><strong>Q: Will the Motors Overheat from continuous evals?</strong><br>
+                A: We put the robot to rest for 20 minutes every 6 hours. So if your job doesn't get queued when there is no jobs before it, it might be in the resting period.</li>
+                <br>
+                <li><strong>Q: Can I evaluate goal-conditioned policies?</strong><br>
+                A: Yes. Even though the AutoEval server will query your policy with the language command, your policy server can ignore the language command and use the proper goal image. We provide the goal images of the four tasks in the github repo.</li>
+                <br>
+                <li><strong>Q: Are the evaluation data logged and available?</strong><br>
+                A: Yes. All evaluation data (e.g. observations, actions, success) are logged at full resolution and available on a <a href="https://huggingface.co/datasets/zhouzypaul/auto_eval" target="_blank">huggingface dataset</a>. You can find the directory to your job by going to <code>wandb eval report > logs > printed out at the bottom</code></li>
+                <br>
+            </ol>
         <p style="margin-top: 20px;">If you encounter problems not described here, please contact the authors or reach out on the <a href="https://discord.gg/3CbJw48P" target="_blank">Discord channel</a>.</p>
     </div>
+
+<section class="section section-dark" id="BibTeX">
+        <div class="section-content">
+            <h2>BibTeX</h2>
+            <pre style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; max-width: 800px; margin: 0 auto;"><code>@article{zhou2025autoeval,
+    title={AutoEval: Autonomous Evaluation of Generalist Robot Manipulation Policies in the Real World},
+    author={Zhou, Zhiyuan and Atreya, Pranav and Tan, You Liang and Pertsch, Karl and Levine, Sergey},
+    journal = {arXiv preprint arXiv:2503.24278},
+    year={2025},
+}</code></pre>
+        </div>
+    </section>
+
 </body>
 
 </html>
